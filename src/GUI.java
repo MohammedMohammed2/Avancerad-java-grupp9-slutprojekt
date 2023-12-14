@@ -1,9 +1,15 @@
+import org.w3c.dom.events.EventListener;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GUI {
 
-    public static JButton[] button = new JButton[9];
+    public static JTextField text;
+    public static String title;
+    public static JButton button;
 
     GUI(){
         JFrame frame = new JFrame("Project");
@@ -21,9 +27,7 @@ public class GUI {
 
         JPanel panel = new JPanel(new FlowLayout());
 
-        JLabel label = new JLabel("Music");
-
-
+        JLabel label = new JLabel("Film");
 
         panel.add(label);
         return panel;
@@ -37,27 +41,36 @@ public class GUI {
 
         panel.setBorder(BorderFactory.createLineBorder(Color.black,10));
 
-
-
-
-
-
         return panel;
     }
 
 
 
 
-    public static JPanel bottom(){
+    public JPanel bottom(){
 
         JPanel panel = new JPanel( new FlowLayout());
+        text = new JTextField();
 
-        for (int i = 0; i<9; i++ ) {
+        text.setPreferredSize(new Dimension(100,100));
 
-            button[i] = new JButton("Filter");
-            button[i].setPreferredSize(new Dimension(70,30));
-            panel.add(button[i]);
+        button = new JButton();
+        button.addActionListener(new eventlisnter());
+
+        panel.add(text);
+        panel.add(button);
+return panel;
+    }
+
+    class eventlisnter implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JButton press = (JButton) e.getSource();
+
+            if (press.equals(button)){
+                Api.getRequests(text.getText());
+            }
+
         }
-        return panel;
     }
 }
