@@ -10,8 +10,8 @@ public class GUI {
         frame.setSize(500,500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(head(),BorderLayout.NORTH);
-        frame.add(middle.midfield(),BorderLayout.CENTER);
-        frame.add(filters.bottom(),BorderLayout.SOUTH);
+        frame.add(midfield(),BorderLayout.CENTER);
+        frame.add(bottom(),BorderLayout.SOUTH);
         frame.setVisible(true);
     }
 
