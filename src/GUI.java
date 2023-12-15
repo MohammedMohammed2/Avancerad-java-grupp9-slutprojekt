@@ -7,11 +7,8 @@ import java.net.URL;
 
 public class GUI {
     public static String title,year,genre,plot,imdbRate;
-
     public static String poster;
-
     public static ImageIcon image;
-
     public static JTextArea plotge;
     public static JLabel labelTitle, labelYear, labelGenre, labelRate, labelImage;
     public static JTextField text;

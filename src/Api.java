@@ -1,19 +1,14 @@
-
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Api extends GUI {
-
-
     public static void getRequests(String text){
 
         try {
@@ -42,12 +37,11 @@ public class Api extends GUI {
                 // Close reader
                 reader.close();
 
-
-                System.out.println(response);
-
+                // Turn repsonse to as object
                 JsonValue jv = Json.parse(response.toString());
                 JsonObject jo = jv.asObject();
 
+                // Get the data for GUI
                 title = jo.get("Title").asString();
                 year = jo.get("Year").asString();
                 genre = jo.get("Genre").asString();
@@ -55,16 +49,18 @@ public class Api extends GUI {
                 imdbRate = jo.get("imdbRating").asString();
                 poster = jo.get("Poster").asString();
 
+                /*
+                om vi ska använda rating i array
+
                 JsonArray ja = jo.get("Ratings").asArray();
                 JsonObject rate = ja.get(0).asObject();
 
                 String rating = rate.getString("Value", "finns inte");
 
-                System.out.println(title + year + genre + rating + imdbRate);
+                 */
 
-
+                System.out.println(title + year + genre + imdbRate);
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
