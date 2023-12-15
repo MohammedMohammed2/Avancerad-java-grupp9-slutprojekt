@@ -48,11 +48,11 @@ public class Api extends GUI {
                 JsonValue jv = Json.parse(response.toString());
                 JsonObject jo = jv.asObject();
 
-                String title = jo.get("Title").asString();
-                String year = jo.get("Year").asString();
-                String genre = jo.get("Genre").asString();
-                String plot = jo.get("Plot").asString();
-                String imdbrate = jo.get("imdbRating").asString();
+                title = jo.get("Title").asString();
+                year = jo.get("Year").asString();
+                genre = jo.get("Genre").asString();
+                plot = jo.get("Plot").asString();
+                imdbRate = jo.get("imdbRating").asString();
                 String poster = jo.get("Poster").asString();
 
                 JsonArray ja = jo.get("Ratings").asArray();
@@ -60,7 +60,7 @@ public class Api extends GUI {
 
                 String rating = rate.getString("Value", "finns inte");
 
-                System.out.println(title + year + genre + rating + imdbrate);
+                System.out.println(title + year + genre + rating + imdbRate);
 
 
             }

@@ -1,12 +1,13 @@
-import org.w3c.dom.events.EventListener;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUI {
+    public static String title,year,genre,plot,imdbRate;
 
+    public static JTextArea plotge;
+    public static JLabel labelTitle, labelYear, labelGenre, labelRate;
     public static JTextField text;
     public static JButton button;
 
@@ -36,9 +37,23 @@ public class GUI {
 
     public static JPanel midfield(){
 
-        JPanel panel = new JPanel(new BorderLayout());
+        JPanel panel = new JPanel(new FlowLayout());
 
         panel.setBorder(BorderFactory.createLineBorder(Color.black,10));
+
+        labelTitle = new JLabel();
+        labelYear = new JLabel();
+        labelGenre = new JLabel();
+        labelRate = new JLabel();
+        plotge = new JTextArea();
+        plotge.setSize(200,200);
+        plotge.setLineWrap(true);
+        plotge.setVisible(false);
+        panel.add(labelTitle);
+        panel.add(labelYear);
+        panel.add(labelGenre);
+        panel.add(labelRate);
+        panel.add(plotge);
 
         return panel;
     }
@@ -68,6 +83,13 @@ return panel;
 
             if (press.equals(button)){
                 Api.getRequests(text.getText());
+                labelTitle.setText(Api.title);
+                labelYear.setText(Api.year);
+                labelGenre.setText(Api.genre);
+                labelRate.setText(Api.imdbRate);
+                plotge.setText(Api.plot);
+                plotge.setVisible(true);
+                plotge.setEditable(false);
             }
         }
     }
