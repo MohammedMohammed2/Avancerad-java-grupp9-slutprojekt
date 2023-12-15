@@ -1,5 +1,6 @@
 
 import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
 
@@ -42,7 +43,7 @@ public class Api extends GUI {
                 reader.close();
 
 
-               System.out.println(response);
+                System.out.println(response);
 
                 JsonValue jv = Json.parse(response.toString());
                 JsonObject jo = jv.asObject();
@@ -51,9 +52,15 @@ public class Api extends GUI {
                 String year = jo.get("Year").asString();
                 String genre = jo.get("Genre").asString();
                 String plot = jo.get("Plot").asString();
-                String ratings = jo.get("Ratings").asString();
+                String imdbrate = jo.get("imdbRating").asString();
+                String poster = jo.get("Poster").asString();
 
-                System.out.println(title + year + genre + plot + ratings);
+                JsonArray ja = jo.get("Ratings").asArray();
+                JsonObject rate = ja.get(0).asObject();
+
+                String rating = rate.getString("Value", "finns inte");
+
+                System.out.println(title + year + genre + rating + imdbrate);
 
 
             }

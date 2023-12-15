@@ -69,7 +69,6 @@ return panel;
             if (press.equals(button)){
                 Api.getRequests(text.getText());
             }
-
         }
     }
 }
