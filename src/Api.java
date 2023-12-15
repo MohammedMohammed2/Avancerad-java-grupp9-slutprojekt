@@ -8,10 +8,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Api extends GUI {
-
 
 
     public static void getRequests(String text){
@@ -53,7 +53,7 @@ public class Api extends GUI {
                 genre = jo.get("Genre").asString();
                 plot = jo.get("Plot").asString();
                 imdbRate = jo.get("imdbRating").asString();
-                String poster = jo.get("Poster").asString();
+                poster = jo.get("Poster").asString();
 
                 JsonArray ja = jo.get("Ratings").asArray();
                 JsonObject rate = ja.get(0).asObject();
