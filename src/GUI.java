@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 public class GUI {
 
     public static JTextField text;
-    public static String title;
     public static JButton button;
 
     GUI(){
