@@ -1,4 +1,8 @@
-import javax.swing.*;
+
+import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonObject;
+import com.eclipsesource.json.JsonValue;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -38,10 +42,19 @@ public class Api extends GUI {
                 reader.close();
 
 
-                System.out.println(response);
+               System.out.println(response);
 
-                //Gson gson = new Gson();
-               // JsonObject jsonObject = gson.fromJson(response.toString(), JsonObject.class);
+                JsonValue jv = Json.parse(response.toString());
+                JsonObject jo = jv.asObject();
+
+                String title = jo.get("Title").asString();
+                String year = jo.get("Year").asString();
+                String genre = jo.get("Genre").asString();
+                String plot = jo.get("Plot").asString();
+                String ratings = jo.get("Ratings").asString();
+
+                System.out.println(title + year + genre + plot + ratings);
+
 
             }
 

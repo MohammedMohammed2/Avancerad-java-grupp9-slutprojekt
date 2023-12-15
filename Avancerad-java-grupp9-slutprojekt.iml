@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="eclipsesource.jaxrs.provider.gson" level="project" />
+    <orderEntry type="library" name="eclipsesource.minimal.json" level="project" />
   </component>
 </module>
