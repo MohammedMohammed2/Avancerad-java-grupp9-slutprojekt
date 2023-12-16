@@ -3,56 +3,69 @@ import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class GenreSearch extends GUI{
-        public static void getRequests(String text, String pagenumbText){
+public class GenreSearch extends GUI {
 
-            try {
+    private static Object[][] rows;
+    private static DefaultTableModel dt = new DefaultTableModel();
 
-                URL url = new URL("https://www.omdbapi.com/?apikey=bb7dc99b&s=" + text + "&page=" + pagenumbText );
+    public static DefaultTableModel getRequests(String text, String pagenumbText) {
 
-                // Open a connection to the URL
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        try {
 
-                // Set the request method to GET
-                connection.setRequestMethod("GET");
+            URL url = new URL("https://www.omdbapi.com/?apikey=bb7dc99b&s=" + text + "&page=" + pagenumbText);
 
-                // Get the response code t.ex 400, 404, 200 är ok
-                int responseCode = connection.getResponseCode();
+            // Open a connection to the URL
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-                if (responseCode == HttpURLConnection.HTTP_OK) {
+            // Set the request method to GET
+            connection.setRequestMethod("GET");
 
-                    // Read the response from the InputStream
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    String line;
-                    StringBuilder response = new StringBuilder();
+            // Get the response code t.ex 400, 404, 200 är ok
+            int responseCode = connection.getResponseCode();
 
-                    while ((line = reader.readLine()) != null){
-                        response.append(line);
-                    }
-                    // Close reader
-                    reader.close();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
 
-                    // Turn repsonse to as object
-                    JsonValue jv = Json.parse(response.toString());
-                    JsonObject jo = jv.asObject();
-                    JsonArray ja = jo.get("Search").asArray();
-                    JsonObject inner = ja.get(0).asObject();
-                    System.out.println(ja);
+                // Read the response from the InputStream
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line;
+                StringBuilder response = new StringBuilder();
 
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                // Close reader
+                reader.close();
+
+                // Turn repsonse to as object
+                JsonValue jv = Json.parse(response.toString());
+                JsonObject jo = jv.asObject();
+                JsonArray ja = jo.get("Search").asArray();
+                System.out.println(ja);
+
+                int col = ja.size()-1;
+                rows = new Object[col][5];
+
+                for (int i = 0 ; i< col ; i++){
                     // Get the data for GUI
-                    title = inner.getString("Title","fins inte");
-                    year = inner.getString("Year","finns inte");
+                    JsonObject inner = ja.get(i).asObject();
+
+                    title = inner.getString("Title", "finns inte");
+                    year = inner.getString("Year", "finns inte");
                     genre = text;
                     //plot = jo.get("Plot").asString();
-                    imdbRate = inner.getString("imdbRating","finns inte");
+                    imdbRate = inner.getString("imdbRating", "finns inte");
                     //poster = jo.get("Poster").asString();
-
+                    rows[i] = new Object[]{title,year, genre, imdbRate,"Button"};
+                }
                 /*
                 om vi ska använda rating i array
 
@@ -62,11 +75,13 @@ public class GenreSearch extends GUI{
                 String rating = rate.getString("Value", "finns inte");
 
                  */
-
-                    System.out.println(title);
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                dt.setDataVector(rows, GUI.column);
+                System.out.println(title);
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+
+        return dt;
+    }
 }
