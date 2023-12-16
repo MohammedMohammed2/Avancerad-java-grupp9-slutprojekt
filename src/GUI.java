@@ -13,7 +13,7 @@ public class GUI {
     public static JTextArea plotge;
     public static JLabel labelTitle, labelYear, labelGenre, labelRate, labelImage;
     public static JTextField text;
-    public static JButton button;
+    public static JButton button,button1;
 
     static String [] column = {"Title", "Year", "Genre", "Imdb Rating"};
     Object [][] data = {{"","","",""}};
@@ -92,13 +92,19 @@ public class GUI {
         JPanel panel = new JPanel( new FlowLayout());
         text = new JTextField();
 
-        text.setPreferredSize(new Dimension(100,100));
+        text.setPreferredSize(new Dimension(100,20));
 
-        button = new JButton();
+        button = new JButton("search");
         button.addActionListener(new eventlisnter());
+        button.setPreferredSize(new Dimension(100,20));
+
+        button1 = new JButton("Genre");
+        button1.addActionListener(new eventlisnter());
+        button1.setPreferredSize(new Dimension(100,20));
 
         panel.add(text);
         panel.add(button);
+        panel.add(button1);
 return panel;
     }
 
@@ -107,21 +113,26 @@ return panel;
         public void actionPerformed(ActionEvent e) {
             JButton press = (JButton) e.getSource();
 
-            if (press.equals(button)){
+            if (press.equals(button)) {
                 Api.getRequests(text.getText());
 
+                String[][] rows = {{Api.title, Api.year, Api.genre, Api.imdbRate}};
+                tableModel.setDataVector(rows, column);
+                text.setText("");
+            }
+            if (press.equals(button1)){
+                GenreSearch.getRequests(text.getText());
                 String [][] rows = {{Api.title, Api.year, Api.genre, Api.imdbRate}};
                 tableModel.setDataVector(rows,column);
-
-
-
-                /* labelTitle.setText(Api.title);
+                text.setText("");
+            }
+                /*labelTitle.setText(Api.title);
                 labelYear.setText(Api.year);
                 labelGenre.setText(Api.genre);
 
                 labelRate.setText(Api.imdbRate);
 
-                */
+
 
                 try {
                     image = new ImageIcon(new URL(poster));
@@ -132,8 +143,7 @@ return panel;
 
                 plotge.setText(Api.plot);
                 plotge.setVisible(true);
-                plotge.setEditable(false);
-            }
+                plotge.setEditable(false);*/
         }
     }
 }
