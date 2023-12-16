@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,12 @@ public class GUI {
     public static JLabel labelTitle, labelYear, labelGenre, labelRate, labelImage;
     public static JTextField text;
     public static JButton button;
+
+    static String [] column = {"Title", "Year", "Genre", "Imdb Rating"};
+    Object [][] data = {{"","","",""}};
+
+    DefaultTableModel tableModel = new DefaultTableModel(data,column);
+
 
     GUI() {
 
@@ -39,11 +46,16 @@ public class GUI {
 
 
 
-    public static JPanel midfield(){
+    public JPanel midfield(){
 
         JPanel panel = new JPanel(new FlowLayout());
+       // panel.setBorder(BorderFactory.createLineBorder(Color.black,10));
 
-        panel.setBorder(BorderFactory.createLineBorder(Color.black,10));
+        JTable table = new JTable(data, column);
+
+        table.setModel(tableModel);
+        table.setFillsViewportHeight(true);
+        JScrollPane scrollPane = new JScrollPane(table);
 
         labelTitle = new JLabel();
         labelYear = new JLabel();
@@ -58,10 +70,14 @@ public class GUI {
 
 
 
-        panel.add(labelTitle);
+        panel.add(scrollPane);
+
+       /* panel.add(labelTitle);
         panel.add(labelYear);
         panel.add(labelGenre);
         panel.add(labelRate);
+
+        */
         panel.add(plotge);
         panel.add(labelImage);
 
@@ -93,11 +109,19 @@ return panel;
 
             if (press.equals(button)){
                 Api.getRequests(text.getText());
-                labelTitle.setText(Api.title);
+
+                String [][] rows = {{Api.title, Api.year, Api.genre, Api.imdbRate}};
+                tableModel.setDataVector(rows,column);
+
+
+
+                /* labelTitle.setText(Api.title);
                 labelYear.setText(Api.year);
                 labelGenre.setText(Api.genre);
 
                 labelRate.setText(Api.imdbRate);
+
+                */
 
                 try {
                     image = new ImageIcon(new URL(poster));
