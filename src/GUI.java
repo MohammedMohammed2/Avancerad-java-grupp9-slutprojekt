@@ -3,8 +3,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.MalformedURLException;
-import java.net.URL;
+
 
 public class GUI {
     public static String title,year,genre,plot,imdbRate;
@@ -17,7 +16,6 @@ public class GUI {
 
     static String [] column = {"Title", "Year", "Genre", "Imdb Rating"};
     Object [][] data = {{"","","",""}};
-
     DefaultTableModel tableModel = new DefaultTableModel(data,column);
 
 
@@ -57,35 +55,18 @@ public class GUI {
         table.setFillsViewportHeight(true);
         JScrollPane scrollPane = new JScrollPane(table);
 
-        labelTitle = new JLabel();
-        labelYear = new JLabel();
-        labelGenre = new JLabel();
-        labelRate = new JLabel();
-        labelImage = new JLabel();
-
         plotge = new JTextArea();
         plotge.setSize(200,200);
         plotge.setLineWrap(true);
         plotge.setVisible(false);
 
-
-
         panel.add(scrollPane);
 
-       /* panel.add(labelTitle);
-        panel.add(labelYear);
-        panel.add(labelGenre);
-        panel.add(labelRate);
-
-        */
         panel.add(plotge);
         panel.add(labelImage);
 
         return panel;
     }
-
-
-
 
     public JPanel bottom(){
 
@@ -126,18 +107,12 @@ return panel;
             }
             if (press.equals(button1)){
                 GenreSearch.getRequests(text.getText(),pagenumb.getText());
-                String [][] rows = {{Api.title, Api.year, Api.genre, Api.imdbRate}};
+                String [][] rows = {{Api.title, Api.year, Api.genre}};
                 tableModel.setDataVector(rows,column);
                 text.setText("");
             }
-                /*labelTitle.setText(Api.title);
-                labelYear.setText(Api.year);
-                labelGenre.setText(Api.genre);
 
-                labelRate.setText(Api.imdbRate);
-
-
-
+            /*
                 try {
                     image = new ImageIcon(new URL(poster));
                 } catch (MalformedURLException ex) {

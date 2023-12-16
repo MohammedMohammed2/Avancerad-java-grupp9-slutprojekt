@@ -2,10 +2,7 @@ import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
-
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -64,24 +61,14 @@ public class GenreSearch extends GUI {
                     //plot = jo.get("Plot").asString();
                     imdbRate = inner.getString("imdbRating", "finns inte");
                     //poster = jo.get("Poster").asString();
-                    rows[i] = new Object[]{title,year, genre, imdbRate,"Button"};
+                    rows[i] = new Object[]{title,year, genre, imdbRate};
                 }
-                /*
-                om vi ska använda rating i array
-
-                JsonArray ja = jo.get("Ratings").asArray();
-                JsonObject rate = ja.get(0).asObject();
-
-                String rating = rate.getString("Value", "finns inte");
-
-                 */
                 dt.setDataVector(rows, GUI.column);
                 System.out.println(title);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         return dt;
     }
 }

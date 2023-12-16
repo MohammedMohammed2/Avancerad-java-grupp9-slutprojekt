@@ -1,5 +1,4 @@
 import com.eclipsesource.json.Json;
-import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
 import java.io.BufferedReader;
@@ -49,17 +48,6 @@ public class Api extends GUI {
                 imdbRate = jo.get("imdbRating").asString();
                 poster = jo.get("Poster").asString();
 
-                /*
-                om vi ska använda rating i array
-
-                JsonArray ja = jo.get("Ratings").asArray();
-                JsonObject rate = ja.get(0).asObject();
-
-                String rating = rate.getString("Value", "finns inte");
-
-                 */
-
-                System.out.println(title + year + genre + imdbRate);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
