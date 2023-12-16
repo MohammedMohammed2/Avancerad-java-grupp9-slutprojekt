@@ -10,11 +10,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class GenreSearch extends GUI{
-        public static void getRequests(String text){
+        public static void getRequests(String text, String pagenumbText){
 
             try {
 
-                URL url = new URL("https://www.omdbapi.com/?apikey=bb7dc99b&s=" + text + "&page=1" );
+                URL url = new URL("https://www.omdbapi.com/?apikey=bb7dc99b&s=" + text + "&page=" + pagenumbText );
 
                 // Open a connection to the URL
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();

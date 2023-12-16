@@ -12,7 +12,7 @@ public class GUI {
     public static ImageIcon image;
     public static JTextArea plotge;
     public static JLabel labelTitle, labelYear, labelGenre, labelRate, labelImage;
-    public static JTextField text;
+    public static JTextField text,pagenumb;
     public static JButton button,button1;
 
     static String [] column = {"Title", "Year", "Genre", "Imdb Rating"};
@@ -91,8 +91,11 @@ public class GUI {
 
         JPanel panel = new JPanel( new FlowLayout());
         text = new JTextField();
-
         text.setPreferredSize(new Dimension(100,20));
+
+        pagenumb = new JTextField();
+        pagenumb.setPreferredSize(new Dimension(50,20));
+
 
         button = new JButton("search");
         button.addActionListener(new eventlisnter());
@@ -103,6 +106,7 @@ public class GUI {
         button1.setPreferredSize(new Dimension(100,20));
 
         panel.add(text);
+        panel.add(pagenumb);
         panel.add(button);
         panel.add(button1);
 return panel;
@@ -121,7 +125,7 @@ return panel;
                 text.setText("");
             }
             if (press.equals(button1)){
-                GenreSearch.getRequests(text.getText());
+                GenreSearch.getRequests(text.getText(),pagenumb.getText());
                 String [][] rows = {{Api.title, Api.year, Api.genre, Api.imdbRate}};
                 tableModel.setDataVector(rows,column);
                 text.setText("");
