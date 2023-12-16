@@ -11,8 +11,8 @@ import java.net.URL;
 
 public class GenreSearch extends GUI {
 
-    private static Object[][] rows;
-    private static DefaultTableModel dt = new DefaultTableModel();
+    public static Object[][] rows;
+    public static DefaultTableModel dt = new DefaultTableModel();
 
     public static DefaultTableModel getRequests(String text, String pagenumbText) {
 

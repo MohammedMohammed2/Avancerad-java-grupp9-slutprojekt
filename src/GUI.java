@@ -62,8 +62,8 @@ public class GUI {
 
         panel.add(scrollPane);
 
-        panel.add(plotge);
-        panel.add(labelImage);
+       // panel.add(plotge);
+       // panel.add(labelImage);
 
         return panel;
     }
@@ -76,7 +76,6 @@ public class GUI {
 
         pagenumb = new JTextField();
         pagenumb.setPreferredSize(new Dimension(50,20));
-
 
         button = new JButton("search");
         button.addActionListener(new eventlisnter());
@@ -106,9 +105,10 @@ return panel;
                 text.setText("");
             }
             if (press.equals(button1)){
-                GenreSearch.getRequests(text.getText(),pagenumb.getText());
-                String [][] rows = {{Api.title, Api.year, Api.genre}};
-                tableModel.setDataVector(rows,column);
+                GenreSearch.getRequests(text.getText(), pagenumb.getText());
+
+                tableModel.setDataVector(GenreSearch.rows,GUI.column);
+
                 text.setText("");
             }
 
