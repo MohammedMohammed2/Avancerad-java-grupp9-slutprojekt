@@ -54,14 +54,14 @@ public class GenreSearch extends GUI {
                 for (int i = 0 ; i< col ; i++){
                     // Get the data for GUI
                     JsonObject inner = ja.get(i).asObject();
-
                     title = inner.getString("Title", "finns inte");
                     year = inner.getString("Year", "finns inte");
-                    genre = text;
+                    genre = inner.getString("genre", "finns inte");
                     //plot = jo.get("Plot").asString();
                     imdbRate = inner.getString("imdbRating", "finns inte");
                     //poster = jo.get("Poster").asString();
                     rows[i] = new Object[]{title,year, genre, imdbRate};
+                    System.out.println(jo);
                 }
                 dt.setDataVector(rows, GUI.column);
                 System.out.println(title);

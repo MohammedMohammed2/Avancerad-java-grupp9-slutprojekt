@@ -47,7 +47,6 @@ public class Api extends GUI {
                 plot = jo.get("Plot").asString();
                 imdbRate = jo.get("imdbRating").asString();
                 poster = jo.get("Poster").asString();
-
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

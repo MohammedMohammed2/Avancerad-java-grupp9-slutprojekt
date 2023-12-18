@@ -81,7 +81,7 @@ public class GUI {
         button.addActionListener(new eventlisnter());
         button.setPreferredSize(new Dimension(100,20));
 
-        button1 = new JButton("Genre");
+        button1 = new JButton("Get movie");
         button1.addActionListener(new eventlisnter());
         button1.setPreferredSize(new Dimension(100,20));
 
