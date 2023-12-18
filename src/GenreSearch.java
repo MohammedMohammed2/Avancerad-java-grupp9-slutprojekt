@@ -2,6 +2,8 @@ import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
+
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -59,11 +61,13 @@ public class GenreSearch extends GUI {
                     genre = inner.getString("genre", "finns inte");
                     //plot = jo.get("Plot").asString();
                     imdbRate = inner.getString("imdbRating", "finns inte");
-                    //poster = jo.get("Poster").asString();
-                    rows[i] = new Object[]{title,year, genre, imdbRate};
+                    poster = inner.get("Poster").asString();
+                    ImageIcon icon = new ImageIcon(poster);
+                    rows[i] = new Object[]{title,year, genre, imdbRate,icon};
                     System.out.println(jo);
                 }
                 dt.setDataVector(rows, GUI.column);
+                //table.setRowHeight(((ImageIcon) tableModel.getValueAt(0,4)).getIconHeight());
                 System.out.println(title);
             }
         } catch (IOException e) {

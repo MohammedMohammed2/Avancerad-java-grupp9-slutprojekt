@@ -13,10 +13,12 @@ public class GUI {
     public static JLabel labelTitle, labelYear, labelGenre, labelRate, labelImage;
     public static JTextField text,pagenumb;
     public static JButton button,button1;
+    public static JTable table;
 
-    static String [] column = {"Title", "Year", "Genre", "Imdb Rating"};
-    Object [][] data = {{"","","",""}};
-    DefaultTableModel tableModel = new DefaultTableModel(data,column);
+    static String [] column = {"Title", "Year", "Genre", "Imdb Rating", "Poster"};
+    static Object [][] data = {{"","","",""}};
+    static DefaultTableModel tableModel = new DefaultTableModel(data,column);
+
 
 
     GUI() {
@@ -49,12 +51,14 @@ public class GUI {
         JPanel panel = new JPanel(new FlowLayout());
        // panel.setBorder(BorderFactory.createLineBorder(Color.black,10));
 
-        JTable table = new JTable(data, column);
+        table = new JTable(data, column);
 
         table.setModel(tableModel);
         table.setAutoCreateRowSorter(true);
         table.setFillsViewportHeight(true);
         JScrollPane scrollPane = new JScrollPane(table);
+
+
 
         plotge = new JTextArea();
         plotge.setSize(200,200);

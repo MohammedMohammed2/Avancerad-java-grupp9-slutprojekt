@@ -7,7 +7,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class ImageColumnTest2 extends GUI{
+/*
+public class ImageColumnTest2{
     public static final String IMAGE_SHEET_PATH = "http://speckycdn.sdm.netdna-cdn.com/"
             + "wp-content/uploads/2010/08/flag_icons_04.jpg";
 
@@ -63,5 +64,4 @@ public class ImageColumnTest2 extends GUI{
                 e.printStackTrace();
                 System.exit(-1);
             }
-        }
-    }
+        }*/
