@@ -52,6 +52,7 @@ public class GUI {
         JTable table = new JTable(data, column);
 
         table.setModel(tableModel);
+        table.setAutoCreateRowSorter(true);
         table.setFillsViewportHeight(true);
         JScrollPane scrollPane = new JScrollPane(table);
 
