@@ -1,5 +1,7 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,8 +17,8 @@ public class GUI {
     public static JButton button,button1;
     public static JTable table;
 
-    static String [] column = {"Title", "Year", "Genre", "Imdb Rating", "Poster"};
-    static Object [][] data = {{"","","",""}};
+    static String [] column = {"Title", "Year", "Genre", "Imdb Rating", "Poster","Plot"};
+    static Object [][] data = {{"","","","",""}};
     static DefaultTableModel tableModel = new DefaultTableModel(data,column);
 
 
@@ -26,6 +28,7 @@ public class GUI {
         JFrame frame = new JFrame("Project");
         frame.setSize(500,500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
         frame.add(head(),BorderLayout.NORTH);
         frame.add(midfield(),BorderLayout.CENTER);
         frame.add(bottom(),BorderLayout.SOUTH);
@@ -49,13 +52,14 @@ public class GUI {
     public JPanel midfield(){
 
         JPanel panel = new JPanel(new FlowLayout());
-       // panel.setBorder(BorderFactory.createLineBorder(Color.black,10));
+
 
         table = new JTable(data, column);
 
         table.setModel(tableModel);
         table.setAutoCreateRowSorter(true);
         table.setFillsViewportHeight(true);
+        table.setRowHeight(30);
         JScrollPane scrollPane = new JScrollPane(table);
 
 
@@ -63,7 +67,7 @@ public class GUI {
         plotge = new JTextArea();
         plotge.setSize(200,200);
         plotge.setLineWrap(true);
-        plotge.setVisible(false);
+        plotge.setVisible(true);
 
         panel.add(scrollPane);
 
@@ -86,9 +90,9 @@ public class GUI {
         button.addActionListener(new eventlisnter());
         button.setPreferredSize(new Dimension(100,20));
 
-        button1 = new JButton("Get movie");
+        button1 = new JButton("Get movies");
         button1.addActionListener(new eventlisnter());
-        button1.setPreferredSize(new Dimension(100,20));
+        button1.setPreferredSize(new Dimension(120,20));
 
         panel.add(text);
         panel.add(pagenumb);
@@ -105,7 +109,7 @@ return panel;
             if (press.equals(button)) {
                 Api.getRequests(text.getText());
 
-                String[][] rows = {{Api.title, Api.year, Api.genre, Api.imdbRate}};
+                String[][] rows = {{Api.title, Api.year, Api.genre, Api.imdbRate,Api.poster,Api.plot}};
                 tableModel.setDataVector(rows, column);
                 text.setText("");
             }
