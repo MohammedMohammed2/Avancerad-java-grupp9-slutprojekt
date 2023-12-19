@@ -1,7 +1,5 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,9 +8,8 @@ import java.awt.event.ActionListener;
 public class GUI {
     public static String title,year,genre,plot,imdbRate;
     public static String poster;
-    public static ImageIcon image;
     public static JTextArea plotge;
-    public static JLabel labelTitle, labelYear, labelGenre, labelRate, labelImage;
+
     public static JTextField text,pagenumb;
     public static JButton button,button1;
     public static JTable table;
@@ -71,9 +68,6 @@ public class GUI {
 
         panel.add(scrollPane);
 
-       // panel.add(plotge);
-       // panel.add(labelImage);
-
         return panel;
     }
 
@@ -120,18 +114,6 @@ return panel;
 
                 text.setText("");
             }
-
-            /*
-                try {
-                    image = new ImageIcon(new URL(poster));
-                } catch (MalformedURLException ex) {
-                    throw new RuntimeException(ex);
-                }
-                labelImage.setIcon(image);
-
-                plotge.setText(Api.plot);
-                plotge.setVisible(true);
-                plotge.setEditable(false);*/
         }
     }
 }
