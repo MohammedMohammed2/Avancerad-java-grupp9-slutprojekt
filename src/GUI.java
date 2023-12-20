@@ -13,7 +13,7 @@ public class GUI {
     public static JButton button,button1;
     public static JTable table;
 
-    static String [] column = {"Title", "Year", "Genre", "Imdb Rating", "Poster","Plot"};
+    static String [] column = {"Title", "Year", "Genre", "Imdb Rating","Plot"};
     static Object [][] data = {{"","","","",""}};
     static DefaultTableModel tableModel = new DefaultTableModel(data,column);
 
@@ -102,7 +102,7 @@ return panel;
             if (press.equals(button)) {
                 Api.getRequests(text.getText());
 
-                String[][] rows = {{Api.title, Api.year, Api.genre, Api.imdbRate,Api.poster,Api.plot}};
+                String[][] rows = {{Api.title, Api.year, Api.genre, Api.imdbRate,Api.plot}};
                 tableModel.setDataVector(rows, column);
                 text.setText("");
             }
