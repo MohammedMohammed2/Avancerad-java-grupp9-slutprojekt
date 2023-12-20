@@ -9,7 +9,6 @@ public class GUI {
     public static String title,year,genre,plot,imdbRate;
     public static String poster;
     public static JTextArea plotge;
-
     public static JTextField text,pagenumb;
     public static JButton button,button1;
     public static JTable table;

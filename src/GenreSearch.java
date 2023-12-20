@@ -59,15 +59,15 @@ public class GenreSearch extends GUI {
                     title = inner.getString("Title", "finns inte");
                     year = inner.getString("Year", "finns inte");
                     genre = inner.getString("genre", "finns inte");
-                    plot = inner.getString("Plot","det finns inte");
+                    plot = inner.getString("Plot","finns inte");
                     imdbRate = inner.getString("imdbRating", "finns inte");
-                    poster = inner.get("Poster").asString();
+                    poster = inner.getString("Poster","finns inte");
                     ImageIcon icon = new ImageIcon(poster);
                     rows[i] = new Object[]{title,year, genre, imdbRate,icon,plot};
                     System.out.println(jo);
                 }
                 dt.setDataVector(rows, GUI.column);
-                //table.setRowHeight(((ImageIcon) tableModel.getValueAt(0,4)).getIconHeight());
+                //table.setRowHeight(((ImageIcon) dt.getValueAt(0,5)).getIconHeight());
                 System.out.println(title);
             }
         } catch (IOException e) {
