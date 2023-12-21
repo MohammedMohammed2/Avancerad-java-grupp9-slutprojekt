@@ -59,12 +59,6 @@ public class GUI {
         JScrollPane scrollPane = new JScrollPane(table);
 
 
-
-        plotge = new JTextArea();
-        plotge.setSize(200,200);
-        plotge.setLineWrap(true);
-        plotge.setVisible(true);
-
         panel.add(scrollPane);
 
         return panel;
